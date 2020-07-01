@@ -6,8 +6,14 @@ const Flashcard = (props) => {
   console.log("props card:", props.flashcard);
   const { front, back } = props.flashcard;
 
-  const image = back.type === "image" && back.content;
-  console.log(("image", image));
+  // const image = back.type === "image" && back.content;
+  // console.log(("image", image));
+
+  const backgroundImageStyles = {
+    backgroundImage: `url(${back.content}`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
   return (
     <section
       className={`card ${isFlipped ? "isFlipped" : ""}`}
@@ -19,19 +25,15 @@ const Flashcard = (props) => {
       <div
         className={`front 
         ${isFlipped ? "no-display" : ""} 
-        ${front.type === "image" ? ".image-card" : ""}`}
+        `}
       >
         {front.content}
       </div>
       <div
         className={`back 
-      ${isFlipped ? "" : "no-display"}
-      ${back.type === "image" ? ".image" : ""}`}
-        style={{
-          backgroundImage: `url(${back.content}`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        ${isFlipped ? "" : "no-display"}
+        `}
+        style={back.type === "image" ? backgroundImageStyles : {}}
       >
         {back.type === "text" && back.content}
       </div>
