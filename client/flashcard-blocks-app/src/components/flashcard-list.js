@@ -13,17 +13,21 @@ const FlashcardList = () => {
   useEffect(() => {
     fetch("http://localhost:5000/flashcard-blocks")
       .then((res) => res.json())
-      .then(console.log);
-  }, [flashcards]);
+      .then((res) => {
+        console.log("res", res);
+        setFlashcards(res[0].cards);
+        return res;
+      });
+  }, []);
 
   return (
     <div className='flashcard-grid'>
+      {/* <Flashcard></Flashcard>
       <Flashcard></Flashcard>
-      <Flashcard></Flashcard>
-      <Flashcard></Flashcard>
-      {/* {flashcards.map((flashcard) => {
+      <Flashcard></Flashcard> */}
+      {flashcards.map((flashcard) => {
         return <Flashcard flashcard={flashcard} key={flashcard.id} />;
-      })} */}
+      })}
     </div>
   );
 };

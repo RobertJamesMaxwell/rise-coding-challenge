@@ -47,6 +47,7 @@ const db = {
     {
       cards: [
         {
+          id: 1,
           front: {
             type: "text",
             content: "Front of card 1",
@@ -57,6 +58,7 @@ const db = {
           },
         },
         {
+          id: 2,
           front: {
             type: "text",
             content: "Front of card 2",
@@ -68,6 +70,7 @@ const db = {
           },
         },
         {
+          id: 3,
           front: {
             type: "text",
             content: "Front of card 3",

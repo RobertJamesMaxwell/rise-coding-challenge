@@ -30,7 +30,8 @@
 .card .front,
 .card .back {
   position: absolute;
-  padding: 1rem;
+  /* padding: 1rem; */
+  overflow: auto;
   backface-visibility: hidden;
   display: flex;
   width: 100%;
