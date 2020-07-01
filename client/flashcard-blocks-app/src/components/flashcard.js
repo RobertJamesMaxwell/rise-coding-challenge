@@ -5,14 +5,14 @@ const Flashcard = () => {
   const [isFlipped, setFlipped] = useState(false);
   return (
     <section
-      className={`flashcard-container ${isFlipped ? "isFlipped" : ""}`}
+      className={`card ${isFlipped ? "isFlipped" : ""}`}
       onClick={() => {
         console.log("isFlipped: ", isFlipped);
         return setFlipped(!isFlipped);
       }}
     >
-      <div className='flashcard-front'>Front of card</div>
-      <div className='flashcard-back'>Back of card</div>
+      <div className='front'>Front of card</div>
+      <div className='back'>Back of card</div>
     </section>
   );
 };
