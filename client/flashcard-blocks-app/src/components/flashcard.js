@@ -11,8 +11,12 @@ const Flashcard = () => {
         return setFlipped(!isFlipped);
       }}
     >
-      <div className='front'>Front of card</div>
-      <div className='back'>Back of card</div>
+      <div className={`front ${isFlipped ? "no-display" : ""}`}>
+        Front of card
+      </div>
+      <div className={`back ${isFlipped ? "" : "no-display"}`}>
+        Back of cardfasfasfdsaf dfasdfasdf asdfa sfas fas f
+      </div>
     </section>
   );
 };
