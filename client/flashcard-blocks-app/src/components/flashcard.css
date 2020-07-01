@@ -14,10 +14,10 @@
     translateY(var(--translate-y, 0));
 }
 
-/* .card:hover {
+.card:hover {
   --translate-y: -2px;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
-} */
+}
 
 .card.isFlipped {
   --rotate-y: 180deg;
