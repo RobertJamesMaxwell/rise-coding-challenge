@@ -10,13 +10,7 @@ const FlashcardList = () => {
   const [newCardFrontValue, setNewCardFrontValue] = useState("");
   const [newCardBackValue, setNewCardBackValue] = useState("");
 
-  // fetch("http://localhost:5000/flashcard-blocks", {
-  //   mode: "no-cors",
-  //   Accept: "application/json",
-  // }).then((res) => res.json());
-
   const addFlashcard = () => {
-    setShowModal(!showModal);
     //only handling text for new cards, not images
     const newCardData = {
       front: {
@@ -25,7 +19,7 @@ const FlashcardList = () => {
       },
       back: {
         type: "text",
-        content: setNewCardBackValue,
+        content: newCardBackValue,
       },
     };
     console.log("newCard: ", newCardData);
@@ -33,9 +27,14 @@ const FlashcardList = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCardData),
-    }).then((res) => {
-      console.log("new card from server", res);
-    });
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("new card from server", res);
+        setShowModal(!showModal);
+        setNewCardFrontValue("");
+        setNewCardBackValue("");
+      });
   };
 
   useEffect(() => {
@@ -46,7 +45,7 @@ const FlashcardList = () => {
         setFlashcards(res[0].cards);
         return res;
       });
-  }, []);
+  }, [setShowModal]);
 
   return (
     <div className='flashcard-grid'>
@@ -89,6 +88,9 @@ const FlashcardList = () => {
               />
             </label>
             <input type='submit' value='Submit' />
+            <button type='cancel' onClick={() => setShowModal(!showModal)}>
+              Cancel
+            </button>
           </form>
         </Modal>
       ) : null}
