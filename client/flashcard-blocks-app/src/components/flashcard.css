@@ -1,8 +1,8 @@
 .card {
   min-height: 50vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   position: relative;
   border-radius: 0.25rem;
   box-shadow: 0 0.4rem 1.2rem 0.2rem rgba(0, 0, 0, 0.05);
@@ -27,6 +27,10 @@
 .card.isFlipped {
   --rotate-y: 180deg;
   border-top: 1px solid #ddd;
+}
+
+.isFlipped {
+  justify-content: end;
 }
 
 .no-display {
