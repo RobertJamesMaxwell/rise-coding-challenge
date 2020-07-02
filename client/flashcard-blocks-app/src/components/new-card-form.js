@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./new-card-form.css";
 import routes from "../routes";
+import axios from "axios";
 
 const NewCardForm = (props) => {
   const { showModal, setShowModal } = props;
@@ -10,7 +11,7 @@ const NewCardForm = (props) => {
 
   // New cards are automatically made with content type of 'text'. 'image' type is not supported
   const addFlashcard = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const newCardData = {
       front: {
         type: "text",
@@ -21,23 +22,16 @@ const NewCardForm = (props) => {
         content: newCardBackValue,
       },
     };
-    fetch(routes.FLASHCARD_BLOCKS, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newCardData),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("New card from server", res);
-        setShowModal(!showModal);
-        setNewCardFrontValue("");
-        setNewCardBackValue("");
-      })
-      .catch(console.error);
+    axios.post(routes.FLASHCARD_BLOCKS, { data: newCardData }).then((res) => {
+      console.log(res.data);
+      setNewCardFrontValue("");
+      setNewCardBackValue("");
+      setShowModal(!showModal);
+    });
   };
 
   return (
-    <form onSubmit={() => addFlashcard()}>
+    <form onSubmit={addFlashcard}>
       <label>
         <div>Front:</div>
         <textarea

@@ -4,17 +4,19 @@ import "./flashcard-list.css";
 import Modal from "./modal";
 import NewCardForm from "./new-card-form";
 import routes from "../routes";
+import axios from "axios";
 
 const FlashcardList = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch(routes.FLASHCARD_BLOCKS)
-      .then((res) => res.json())
+    axios
+      .get(routes.FLASHCARD_BLOCKS)
+      .then((res) => res.data)
       .then((res) => setFlashcards(res[0].cards))
       .catch(console.error);
-  }, [setShowModal]);
+  }, [showModal]);
 
   return (
     <div className='flashcard-grid'>

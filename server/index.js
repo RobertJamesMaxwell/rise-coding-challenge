@@ -124,7 +124,7 @@ function server() {
   app.get("/tab-blocks", (req, res) => res.send(db.tabBlocks));
   app.get("/flashcard-blocks", (req, res) => res.send(db.flashcardBlocks));
   app.post("/flashcard-blocks", (req, res) => {
-    const newCard = req.body;
+    const newCard = req.body.data;
     db.flashcardBlocks[0].cards.push({ id: uuidv4(), ...newCard });
     console.log(...db.flashcardBlocks[0].cards);
     res.status(201).json({ data: newCard });
