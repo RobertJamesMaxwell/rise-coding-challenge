@@ -28,6 +28,16 @@ const FlashcardList = () => {
       {flashcards.map((flashcard) => {
         return <Flashcard flashcard={flashcard} key={flashcard.id} />;
       })}
+      {flashcards.length ? (
+        <section className='add-flashcard__container'>
+          <button className='add-flashcard__button'>
+            <div>+</div>
+            Add Flashcard
+          </button>
+        </section>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
