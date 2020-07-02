@@ -1,5 +1,8 @@
 .card {
-  min-height: 50vh;
+  /* min-height: 50vh; */
+  height: 280px;
+  width: 280px;
+  /* min-width: 280px; */
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -33,6 +36,14 @@
   justify-content: end;
 }
 
+.flip-icon {
+  opacity: 0.3;
+}
+
+.card:hover .flip-icon {
+  opacity: 0.8;
+}
+
 .no-display {
   display: none;
 }
@@ -49,6 +60,10 @@
   justify-content: center;
   align-items: center;
   opacity: 0.75;
+}
+
+.text-content {
+  margin: auto;
 }
 
 .card .front:hover,

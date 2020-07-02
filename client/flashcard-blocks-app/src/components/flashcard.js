@@ -20,7 +20,7 @@ const Flashcard = (props) => {
         ${isFlipped ? "no-display" : ""} 
         `}
       >
-        {front.content}
+        <p className='text-content'>{front.content}</p>
       </div>
       <div
         className={`back 
@@ -28,9 +28,9 @@ const Flashcard = (props) => {
         `}
         style={back.type === "image" ? backgroundImageStyles : {}}
       >
-        {back.type === "text" && back.content}
+        <p className='text-content'>{back.type === "text" && back.content}</p>
       </div>
-      <div>
+      <div className='flip-icon'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='23'
