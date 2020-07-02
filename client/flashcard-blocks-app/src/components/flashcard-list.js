@@ -10,8 +10,8 @@ const FlashcardList = () => {
   const [newCardFrontValue, setNewCardFrontValue] = useState("");
   const [newCardBackValue, setNewCardBackValue] = useState("");
 
+  // New cards are automatically made with content type of 'text'. 'image' type is not supported
   const addFlashcard = () => {
-    //only handling text for new cards, not images
     const newCardData = {
       front: {
         type: "text",
@@ -22,7 +22,6 @@ const FlashcardList = () => {
         content: newCardBackValue,
       },
     };
-    console.log("newCard: ", newCardData);
     fetch("http://localhost:5000/flashcard-blocks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,24 +33,19 @@ const FlashcardList = () => {
         setShowModal(!showModal);
         setNewCardFrontValue("");
         setNewCardBackValue("");
-      });
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
     fetch("http://localhost:5000/flashcard-blocks")
       .then((res) => res.json())
-      .then((res) => {
-        console.log("res", res);
-        setFlashcards(res[0].cards);
-        return res;
-      });
+      .then((res) => setFlashcards(res[0].cards))
+      .catch(console.error);
   }, [setShowModal]);
 
   return (
     <div className='flashcard-grid'>
-      {/* <Flashcard></Flashcard>
-      <Flashcard></Flashcard>
-      <Flashcard></Flashcard> */}
       {flashcards.map((flashcard) => {
         return <Flashcard flashcard={flashcard} key={flashcard.id} />;
       })}
@@ -70,27 +64,31 @@ const FlashcardList = () => {
       )}
       {showModal ? (
         <Modal>
-          <form onSubmit={addFlashcard}>
+          <form className='form' onSubmit={addFlashcard}>
             <label>
-              Front:
-              <input
-                type='text'
+              <div>Front:</div>
+              <textarea
+                rows='6'
+                className='textarea'
                 value={newCardFrontValue}
                 onChange={(e) => setNewCardFrontValue(e.target.value)}
               />
             </label>
             <label>
-              Back:
-              <input
-                type='text'
+              <div>Back:</div>
+              <textarea
+                rows='6'
+                className='textarea'
                 value={newCardBackValue}
                 onChange={(e) => setNewCardBackValue(e.target.value)}
               />
             </label>
-            <input type='submit' value='Submit' />
-            <button type='cancel' onClick={() => setShowModal(!showModal)}>
-              Cancel
-            </button>
+            <div className='buttons'>
+              <input type='submit' value='Submit' />
+              <button type='cancel' onClick={() => setShowModal(!showModal)}>
+                Cancel
+              </button>
+            </div>
           </form>
         </Modal>
       ) : null}
