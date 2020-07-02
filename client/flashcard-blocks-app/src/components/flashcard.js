@@ -13,10 +13,7 @@ const Flashcard = (props) => {
   return (
     <section
       className={`card ${isFlipped ? "isFlipped" : ""}`}
-      onClick={() => {
-        console.log("isFlipped: ", isFlipped);
-        return setFlipped(!isFlipped);
-      }}
+      onClick={() => setFlipped(!isFlipped)}
     >
       <div
         className={`front 
