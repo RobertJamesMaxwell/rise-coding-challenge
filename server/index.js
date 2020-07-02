@@ -116,8 +116,19 @@ function server() {
   app.use(morgan("dev"));
   app.use(cors()); //TODO enable only in dev mode
 
+  //enable server to read post response
+  app.use(express.urlencoded());
+  app.use(express.json());
+
   app.get("/tab-blocks", (req, res) => res.send(db.tabBlocks));
   app.get("/flashcard-blocks", (req, res) => res.send(db.flashcardBlocks));
+  app.post("/flashcard-blocks", (req, res) => {
+    console.log("server hit", req.body);
+    const newCard = req.body;
+    db.flashcardBlocks[0].cards.push({ id: 5, ...newCard });
+    console.log(...db.flashcardBlocks[0].cards);
+    res.status(201).json({ data: newCard });
+  });
   app.get("/knowledge-check-blocks", (req, res) =>
     res.send(db.knowledgeCheckBlocks)
   );
