@@ -3,13 +3,14 @@ import Flashcard from "./flashcard";
 import "./flashcard-list.css";
 import Modal from "./modal";
 import NewCardForm from "./new-card-form";
+import routes from "../routes";
 
 const FlashcardList = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/flashcard-blocks")
+    fetch(routes.FLASHCARD_BLOCKS)
       .then((res) => res.json())
       .then((res) => setFlashcards(res[0].cards))
       .catch(console.error);

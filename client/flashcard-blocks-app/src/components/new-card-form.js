@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import "./new-card-form.css";
+import routes from "../routes";
 
 const NewCardForm = (props) => {
-  console.log("new card form props", props);
   const { showModal, setShowModal } = props;
+
   const [newCardFrontValue, setNewCardFrontValue] = useState("");
   const [newCardBackValue, setNewCardBackValue] = useState("");
 
   // New cards are automatically made with content type of 'text'. 'image' type is not supported
-  const addFlashcard = () => {
+  const addFlashcard = (e) => {
+    // e.preventDefault();
     const newCardData = {
       front: {
         type: "text",
@@ -18,7 +21,7 @@ const NewCardForm = (props) => {
         content: newCardBackValue,
       },
     };
-    fetch("http://localhost:5000/flashcard-blocks", {
+    fetch(routes.FLASHCARD_BLOCKS, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCardData),
@@ -34,7 +37,7 @@ const NewCardForm = (props) => {
   };
 
   return (
-    <form onSubmit={addFlashcard}>
+    <form onSubmit={() => addFlashcard()}>
       <label>
         <div>Front:</div>
         <textarea

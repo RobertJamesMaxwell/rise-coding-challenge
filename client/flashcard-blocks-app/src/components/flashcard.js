@@ -3,11 +3,7 @@ import "./flashcard.css";
 
 const Flashcard = (props) => {
   const [isFlipped, setFlipped] = useState(false);
-  console.log("props card:", props.flashcard);
   const { front, back } = props.flashcard;
-
-  // const image = back.type === "image" && back.content;
-  // console.log(("image", image));
 
   const backgroundImageStyles = {
     backgroundImage: `url(${back.content}`,
