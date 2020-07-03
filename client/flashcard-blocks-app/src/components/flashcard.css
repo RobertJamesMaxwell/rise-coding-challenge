@@ -16,20 +16,24 @@
   color: rgb(49, 53, 55);
   /* background-color: white; */
   transform-style: preserve-3d;
+  /* transform: perspective(1000px) translateY(var(--translate-y, 0)); */
   transition: 350ms;
   cursor: pointer;
-  transform: perspective(1000px) rotateY(var(--rotate-y, 0))
-    translateY(var(--translate-y, 0));
 }
 
 .card:hover {
-  --translate-y: -2px;
+  /* --translate-y: -2px; */
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
 }
 
 .card.isFlipped {
+  transform: rotateY(var(--rotate-y, 0));
   --rotate-y: 180deg;
   border-top: 1px solid #ddd;
+}
+
+.card.isNotFlipped {
+  transform: scale(0.9);
 }
 
 .isFlipped {

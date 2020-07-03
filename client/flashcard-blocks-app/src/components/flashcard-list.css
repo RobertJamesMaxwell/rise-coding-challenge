@@ -1,6 +1,7 @@
 .flashcard-grid {
   display: grid;
   align-items: center;
+  justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(200px, 280px));
   gap: 1rem;
   padding: 0 3rem;
