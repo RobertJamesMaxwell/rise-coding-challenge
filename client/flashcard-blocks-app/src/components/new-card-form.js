@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./new-card-form.css";
 import routes from "../routes";
 import axios from "axios";
+import { createFlashcardObject } from "../helpers/helpers";
 
 const NewCardForm = (props) => {
   const { showModal, setShowModal } = props;
@@ -9,19 +10,14 @@ const NewCardForm = (props) => {
   const [newCardFrontValue, setNewCardFrontValue] = useState("");
   const [newCardBackValue, setNewCardBackValue] = useState("");
 
-  // New cards are automatically made with content type of 'text'. 'image' type is not supported
   const addFlashcard = (e) => {
     e.preventDefault();
-    const newCardData = {
-      front: {
-        type: "text",
-        content: newCardFrontValue,
-      },
-      back: {
-        type: "text",
-        content: newCardBackValue,
-      },
-    };
+    // New cards are automatically made with content type of 'text'. 'image' type is not supported
+    const newCardData = createFlashcardObject(
+      "text",
+      newCardFrontValue,
+      newCardBackValue
+    );
     axios.post(routes.FLASHCARD_BLOCKS, { data: newCardData }).then((res) => {
       console.log(res.data);
       setNewCardFrontValue("");

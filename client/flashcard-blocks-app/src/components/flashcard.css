@@ -81,6 +81,8 @@
   margin: auto;
   padding: 1rem;
   font-family: "Lato", sans-serif;
+  text-align: left;
+  line-height: 2rem;
 }
 
 .card .front:hover,
