@@ -17,6 +17,7 @@ Thanks for the opportunity to work on this challenge! I've chosen to implement t
 1. `cd client/flashcard-blocks-app`
 1. `npm install`
 1. `npm start`
+1. go to `localhost:3000` in the browser
 
 ## Refactor Ideas
 
