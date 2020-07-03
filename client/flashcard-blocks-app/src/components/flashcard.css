@@ -1,8 +1,6 @@
 .card {
-  /* min-height: 50vh; */
   height: 280px;
   width: 280px;
-  /* min-width: 280px; */
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -11,19 +9,22 @@
   box-shadow: 0 0.4rem 1.2rem 0.2rem rgba(0, 0, 0, 0.05);
   border: 1px solid #ddd;
   border-top: 3px solid #747a7e;
-  /* font-family: Lato, sans-serif; */
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   color: rgb(49, 53, 55);
-  /* background-color: white; */
   transform-style: preserve-3d;
-  /* transform: perspective(1000px) translateY(var(--translate-y, 0)); */
   transition: 350ms;
   cursor: pointer;
 }
 
-.card:hover {
-  /* --translate-y: -2px; */
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+.card.isFlipped {
+  transform: rotateY(var(--rotate-y, 0));
+  --rotate-y: 180deg;
+  border-top: 1px solid #ddd;
+  justify-content: end;
+}
+
+.card.isNotFlipped {
+  transform: scale(0.9);
 }
 
 .card:first-of-type .flip-icon-text:before {
@@ -31,20 +32,6 @@
   font-style: italic;
   font-size: 0.9rem;
   margin-right: 0.5rem;
-}
-
-.card.isFlipped {
-  transform: rotateY(var(--rotate-y, 0));
-  --rotate-y: 180deg;
-  border-top: 1px solid #ddd;
-}
-
-.card.isNotFlipped {
-  transform: scale(0.9);
-}
-
-.isFlipped {
-  justify-content: end;
 }
 
 .flip-icon {
@@ -55,18 +42,9 @@
   opacity: 0.3;
 }
 
-.card:hover .flip-icon {
-  opacity: 0.8;
-}
-
-.no-display {
-  display: none;
-}
-
 .card .front,
 .card .back {
   position: absolute;
-  /* padding: 1rem; */
   overflow: auto;
   backface-visibility: hidden;
   display: flex;
@@ -77,6 +55,10 @@
   opacity: 0.75;
 }
 
+.card .back {
+  transform: rotateY(180deg);
+}
+
 .text-content {
   margin: auto;
   padding: 1rem;
@@ -85,11 +67,19 @@
   line-height: 2rem;
 }
 
+.card:hover .flip-icon {
+  opacity: 0.8;
+}
+
 .card .front:hover,
 .card .back:hover {
   opacity: 0.4;
 }
 
-.card .back {
-  transform: rotateY(180deg);
+.card:hover {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.no-display {
+  display: none;
 }

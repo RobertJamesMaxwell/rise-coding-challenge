@@ -3,7 +3,7 @@ import "./flashcard.css";
 
 const Flashcard = (props) => {
   const [isFlipped, setFlipped] = useState(false);
-  const [pageHasBeenTouched, setPageHasBeenTouched] = useState(false);
+  const [cardHasBeenTouched, setCardHasBeenTouched] = useState(false);
   const { front, back } = props.flashcard;
 
   const backgroundImageStyles = {
@@ -14,8 +14,8 @@ const Flashcard = (props) => {
 
   const handleCardClick = () => {
     setFlipped(!isFlipped);
-    if (!pageHasBeenTouched) {
-      setPageHasBeenTouched(true);
+    if (!cardHasBeenTouched) {
+      setCardHasBeenTouched(true);
     }
   };
 
@@ -40,7 +40,7 @@ const Flashcard = (props) => {
         <p className='text-content'>{back.type === "text" && back.content}</p>
       </div>
       <div
-        className={`flip-icon ${pageHasBeenTouched ? "" : "flip-icon-text"}`}
+        className={`flip-icon ${cardHasBeenTouched ? "" : "flip-icon-text"}`}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
