@@ -126,7 +126,6 @@ function server() {
   app.post("/flashcard-blocks", (req, res) => {
     const newCard = req.body.data;
     db.flashcardBlocks[0].cards.push({ id: uuidv4(), ...newCard });
-    console.log(...db.flashcardBlocks[0].cards);
     res.status(201).json({ data: newCard });
   });
   app.get("/knowledge-check-blocks", (req, res) =>
