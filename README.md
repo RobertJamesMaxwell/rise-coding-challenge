@@ -12,6 +12,8 @@ Thanks for the opportunity to work on this challenge! I've chosen to implement t
 1. `npm install`
 1. `npm start`
 
+note: Saving new cards is just in-memory. If you restart the server, you will begin again with the original 3 flashcards
+
 ### Front end
 
 1. `cd client/flashcard-blocks-app`
